@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Speed Check Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <h2>Anushka Uppula Speed Check</h2>
+
+  <div class="mt-4">
+    <div id="targetTime">Your time: </div>
+    <div id="counter">Count: </div>
+
+    <button type="button" class="btn btn-success mt-2" id="startButton">Start Timer</button>
+    <button type="button" class="btn btn-danger mt-2" id="stopButton" onclick="recordTime()">Stop Timer</button>
+  </div>
+  
+  <script> 
+    let stopTime;
+    let timer;
+
+    function recordTime() {
+      stopTime = Date.now();
+      console.log("Stop time recorded at:", stopTime);
+      clearTimeout(timer);
+    }
+
+    document.getElementById('stopButton').onclick = recordTime;
+
+  </script>
+
+</body>
+</html>
