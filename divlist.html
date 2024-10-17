@@ -33,28 +33,29 @@
 }
 
 @media (max-width: 600px) {
-     .flex-container{
-         flex-direction:column;
-         background-color: green;
-      }
+    .flex-container{
+        flex-direction:column;
+        background-color: green;
     }
-    input {
-            padding: 10px;
-            font-size: 16px;
-            margin: 10px 0;
-        }
- 
-        button {
-            padding: 10px;
-            font-size: 16px;
-            margin: 5px;
-            background-color: antiquewhite;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: palevioletred;
-            transform: scale(1.05);
-        }
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px;
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+button:hover {
+    background-color: palevioletred;
+    transform: scale(1.05);
+}
 </style>
 </head>
 <body>
@@ -70,7 +71,7 @@
     <button onclick="addEnd()">Add end</button>
     <button onclick="addFront()">Add front</button>
     <button onclick="removeMiddle()">Remove</button>
- 
+    <button onclick="swapElements()">Swap</button>
 <script>
     function addEnd() {
         let inputValue = document.getElementById("inputText").value;
@@ -100,6 +101,36 @@
             let middleIndex = Math.floor(length / 2);
             let container = document.getElementById("target");
             container.removeChild(divListItems[middleIndex]);
+        }
+    }
+
+    function swapElements() {
+        let divListItems = document.getElementsByClassName("divlist");
+        let length = divListItems.length;
+    
+        if (length < 2) return;
+    
+        let firstIndex = Math.floor(Math.random() * length);
+        let secondIndex;
+        do {
+            secondIndex = Math.floor(Math.random() * length);
+        } while (secondIndex === firstIndex);
+    
+        let container = document.getElementById("target");
+        let firstElement = divListItems[firstIndex];
+        let secondElement = divListItems[secondIndex];
+    
+        if (Math.abs(firstIndex - secondIndex) === 1) {
+            if (firstIndex < secondIndex) {
+                container.insertBefore(secondElement, firstElement);
+            } else {
+                container.insertBefore(firstElement, secondElement);
+            }
+        } else {
+            let nextFirstElement = firstElement.nextSibling;
+            let nextSecondElement = secondElement.nextSibling;
+            container.insertBefore(firstElement, nextSecondElement);
+            container.insertBefore(secondElement, nextFirstElement);
         }
     }
  
