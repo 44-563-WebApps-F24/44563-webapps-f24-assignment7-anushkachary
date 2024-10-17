@@ -9,15 +9,76 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+<style>
+    body {
+      font-family:'Times New Roman', Times, serif;
+      text-align: center;
+      margin: 20px;
+      background-color: aqua;
+  }
+ 
+  #target, #counter {
+      font-size: 24px;
+      margin: 20px;
+  }
+ 
+  button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+  }
+  button:hover {
+            background-color: #218838;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);  
+            transform: scale(1.1);
+        }
+ 
+        button#stop:hover {
+            background-color: #c82333;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);  
+            transform: scale(1.1);
+        }
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+ 
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+ 
+        .navbar li {
+            margin: 0 15px;
+        }
+ 
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+ 
+        .navbar a:hover {
+            color: #ff7e5f;
+        }
+</style>
+
 <body>
 
   <h2>Anushka Uppula Speed Check</h2>
 
   <div class="mt-4">
-    <div id="targetTime">Your time: </div>
+    <div id="target">Your time: </div>
     <div id="counter">Count: </div>
 
-    <button type="button" class="btn btn-success mt-2" id="startButton">Start Timer</button>
+    <button type="button" class="btn btn-success mt-2" id="startButton" onclick="startTime()">Start Timer</button>
     <button type="button" class="btn btn-danger mt-2" id="stopButton" onclick="recordTime()">Stop Timer</button>
   </div>
   
@@ -31,8 +92,24 @@
       clearTimeout(timer);
     }
 
-    document.getElementById('stopButton').onclick = recordTime;
+    function startTime() {
+      stopTime = undefined;
 
+      for (let i = 0; i <= 4; i++) {
+        setTimeout(() => {
+          document.getElementById('counter').innerHTML = "Count: " + (4 - i);
+        }, i * 1000); // (4-i) * 1000 milliseconds for countdown
+      }
+
+      setTimeout(() => {
+        if (stopTime === undefined) {
+          document.getElementById('target').innerHTML = "Too Slow";
+        } else {
+          const elapsedTime = Date.now() - stopTime;
+          document.getElementById('target').innerHTML = "Time was " + elapsedTime + " milliseconds";
+        }
+      }, 5000); // Check after 5 seconds
+    }
   </script>
 
 </body>
