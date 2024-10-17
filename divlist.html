@@ -1,58 +1,108 @@
 <!DOCTYPE html>
-<html> 
-<head> 
-<style>
-	.flex-container {
-		display: flex;  
-		flex-direction: row;
-		background-color: red;
-	}
+<html>
+ <head>
+	<title>Div List Page</title> 
+	<style>
+    body{
+        background-color: lightblue;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
+    h1{
+        color: darkred;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: rgba(98, 56, 435, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(78, 20, 99, 0.9);
+      margin-bottom: 20px;
+  }
+ 
+.flex-container > div {
+  background-color: #f1f1f1;
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
 
-	.flex-container > div {
-		background-color: #f1f1f1; 
-		margin: 10px;
-		padding: 20px;
-		font-size: 30px;
-	}
+.flex-container > div:hover {
+    transform: translateY(-5px);
+}
 
-	.divlist {
-		background-color: lightblue;
-		color: black;
-	}
-
-	@media (max-width: 600px) {
-		.flex-container {
-			flex-direction: column;
-			background-color: green;
-		}
-	}
+@media (max-width: 600px) {
+     .flex-container{
+         flex-direction:column;
+         background-color: green;
+      }
+    }
+    input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+ 
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            background-color: antiquewhite;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: palevioletred;
+            transform: scale(1.05);
+        }
 </style>
 </head>
- 
 <body>
-	<h1>Anushka Uppula builds list with divs</h1> 
+	<h1>Anushka Uppula builds list with divs</h1>
     <div class="flex-container" id="target">
-		<div class="divlist">row item 1</div>   
-		<div class="divlist">row item 2</div>  
-		<div class="divlist">row item 3</div>  
-	</div>
+        <div class="divlist">row item 1</div>
+        <div class="divlist">row item 2</div>
+        <div class="divlist">row item 3</div>
+    </div>
  
-    <p>Press the button to create a new element of type div and then add it to the container.</p>
- 
+	<p> Press the button to create an new element of type div and then add it to the container.</p>
     <input type="text" id="inputText" placeholder="Enter text for new item">
-	<button onclick="addEnd()">Add end</button>
+    <button onclick="addEnd()">Add end</button>
+    <button onclick="addFront()">Add front</button>
+    <button onclick="removeMiddle()">Remove</button>
  
-	<script>
-		function addEnd() {
-			let inputValue = document.getElementById("inputText").value; 
-			let newElement = document.createElement("div");
-			newElement.innerHTML = inputValue;
-			newElement.className = "divlist";
-			let container = document.getElementById("target");
-			container.appendChild(newElement);
-		}
-	</script>
+<script>
+    function addEnd() {
+        let inputValue = document.getElementById("inputText").value;
+        let newElement = document.createElement("div");
+        newElement.innerHTML = inputValue;
+        newElement.className = "divlist";
+        let container = document.getElementById("target");
+        container.appendChild(newElement);
+    }
+
+    function addFront() {
+        let inputValue = document.getElementById("inputText").value;
+       
+        let newElement = document.createElement("div");
+        newElement.innerHTML = inputValue;
+        newElement.className = "divlist";
+       
+        let container = document.getElementById("target");
+        container.insertBefore(newElement, container.firstChild);
+    }
+ 
+    function removeMiddle() {
+        let divListItems = document.getElementsByClassName("divlist");
+        let length = divListItems.length;
+       
+        if (length > 0) {
+            let middleIndex = Math.floor(length / 2);
+            let container = document.getElementById("target");
+            container.removeChild(divListItems[middleIndex]);
+        }
+    }
+ 
+</script>
 </body>
 </html>
-
- 
