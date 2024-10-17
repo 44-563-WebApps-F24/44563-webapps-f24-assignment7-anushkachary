@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+<style>
+	.flex-container {
+		display: flex;  
+		flex-direction: row;
+		background-color: red;
+	}
+
+	.flex-container > div {
+		background-color: #f1f1f1; 
+		margin: 10px;
+		padding: 20px;
+		font-size: 30px;
+	}
+
+	.divlist {
+		background-color: lightblue;
+		color: black;
+	}
+
+	@media (max-width: 600px) {
+		.flex-container {
+			flex-direction: column;
+			background-color: green;
+		}
+	}
+</style>
+</head>
+ 
+<body>
+	<h1>Anushka Uppula builds list with divs</h1> 
+    <div class="flex-container" id="target">
+		<div class="divlist">row item 1</div>   
+		<div class="divlist">row item 2</div>  
+		<div class="divlist">row item 3</div>  
+	</div>
+ 
+    <p>Press the button to create a new element of type div and then add it to the container.</p>
+ 
+    <input type="text" id="inputText" placeholder="Enter text for new item">
+	<button onclick="addEnd()">Add end</button>
+ 
+	<script>
+		function addEnd() {
+			let inputValue = document.getElementById("inputText").value; 
+			let newElement = document.createElement("div");
+			newElement.innerHTML = inputValue;
+			newElement.className = "divlist";
+			let container = document.getElementById("target");
+			container.appendChild(newElement);
+		}
+	</script>
+</body>
+</html>
+
+ 
